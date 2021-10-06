@@ -1,1 +1,11 @@
 ---
+- name: "{{ auth_action }} from {{ lookup('env','K8S_AUTH_HOST') }}"
+  redhat.openshift.openshift_auth:
+    state: '{{ state }}'
+    host: "{{ lookup('env','K8S_AUTH_HOST') }}"
+    api_key: "{{ lookup('env','K8S_AUTH_API_KEY') }}"
+    validate_certs: "{{ lookup('env','K8S_AUTH_VERIFY_SSL') | bool }}"
+  register: openshift_auth_results
+  until: openshift_auth_results is success
+  delay: 3
+  retries: 15
