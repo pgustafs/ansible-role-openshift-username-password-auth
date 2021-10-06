@@ -58,6 +58,8 @@ host: "{{ lookup('env','K8S_AUTH_HOST') }}"
 validate_certs: "{{ lookup('env','K8S_AUTH_VERIFY_SSL') | bool }}"
 ```
 
+4. Now create a credential using your custom credential type.
+
 Role Variables
 --------------
 
@@ -82,4 +84,4 @@ BSD
 Author Information
 ------------------
 
-pgustafs@redhat.com.
+pgustafs@redhat.com
