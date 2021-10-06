@@ -1,5 +1,5 @@
-Role Name
-=========
+ansible-role-openshift-username-password-auth
+=============================================
 
 A brief description of the role goes here.
 
