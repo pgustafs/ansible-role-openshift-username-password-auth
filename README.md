@@ -69,12 +69,33 @@ Dependencies
 
 Example Playbook
 ----------------
+```yaml
+- name: List Pods
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+  - block:
+    - name: See what version of kubernetes.core 
+      ansible.builtin.shell: cat /usr/share/ansible/collections/ansible_collections/kubernetes/core/MANIFEST.json | grep version
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+    - include_role:
+        name: ansible-role-openshift-username-password-auth
+      vars:
+        auth_action: login
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+    - name: Get a list of all pods from any namespace
+      kubernetes.core.k8s_info:
+        api_key: "{{ api_key }}"
+        kind: Pod
+      register: pod_list
+
+    always:
+    - include_role:
+        name: ansible-role-openshift-username-password-auth
+      vars:
+        auth_action: logout
+```
 
 License
 -------
