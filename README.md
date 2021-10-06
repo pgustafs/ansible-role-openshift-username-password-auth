@@ -10,30 +10,32 @@ Automation controller(Ansible Tower) does not currently have a native OpenShift 
 
 1. Navigate to Administration > Credential Types and add a new credential type.
 2. Name it OpenShift and add the following YAML in the Input Configuration:
-    
-    ---
-    fields:
-      - id: host
-        type: string
-        label: URL for accessing the API server
-      - id: username
-        type: string
-        label: Username for authenticating with the API server
-      - id: password
-        type: string
-        label: Password for authenticating with the API server
-        secret: true
-      - id: verify_ssl
-        type: boolean
-        label: Verify the API server's SSL certificates
-      - id: ca_certificate
-        type: string
-        label: CA certificate used to verify connection to the API server
-        multiline: true
-    required:
-      - username
-      - password
-      - host
+
+```    
+---
+fields:
+  - id: host
+    type: string
+    label: URL for accessing the API server
+  - id: username
+    type: string
+    label: Username for authenticating with the API server
+  - id: password
+    type: string
+    label: Password for authenticating with the API server
+    secret: true
+  - id: verify_ssl
+    type: boolean
+    label: Verify the API server's SSL certificates
+  - id: ca_certificate
+    type: string
+    label: CA certificate used to verify connection to the API server
+    multiline: true
+required:
+  - username
+  - password
+  - host
+```
 
 3. 
 
