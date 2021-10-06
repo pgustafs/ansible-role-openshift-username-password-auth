@@ -1,6 +1,6 @@
 galaxy_info:
   author: Peter Gustafsson
-  description: Ansible galaxy role for adding OpenShift authentication config file
+  description: A role to authenticate to an OpenShift clusters with username and password to retrive an authentication token that can then be used with k8s* modules to interact with the kubernetes API and then logs out (revokes the authentication token).
   company: Red Hat
 
   license: license (GPLv2, CC-BY, etc)
