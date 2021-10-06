@@ -1,7 +1,7 @@
 ansible-role-openshift-username-password-auth
 =============================================
 
-A role to authenticate to an OpenShift clusters with username and password to retrive an authentication token that can then be used with k8s* modules to interact with the kubernetes API and then logs out (revokes the authentication token),
+A role to authenticate to an OpenShift clusters with username and password to retrive an authentication token that can then be used with k8s* modules to interact with the kubernetes API and then logs out (revokes the authentication token).
 
 Requirements
 ------------
@@ -37,7 +37,17 @@ required:
   - host
 ```
 
-3. 
+3. Enter the below YAML in the Injector Configuration:
+
+```yaml
+---
+env:
+  K8S_AUTH_HOST: '{{ host }}'
+  K8S_AUTH_PASSWORD: '{{ password }}'
+  K8S_AUTH_USERNAME: '{{ username }}'
+  K8S_AUTH_VERIFY_SSL: '{{ verify_ssl }}'
+  K8S_AUTH_SSL_CA_CERT: '{{ ca_certificate }}'
+```
 
 Role Variables
 --------------
