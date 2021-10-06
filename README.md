@@ -10,6 +10,8 @@ Automation controller(Ansible Tower) does not currently have a native OpenShift 
 
 1. Navigate to Administration > Credential Types and add a new credential type.
 2. Name it OpenShift and add the following YAML in the Input Configuration:
+    
+    ---
     fields:
       - id: host
         type: string
