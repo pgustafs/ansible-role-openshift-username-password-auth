@@ -1,22 +1,47 @@
 ansible-role-openshift-username-password-auth
 =============================================
 
-A brief description of the role goes here.
+A role to authenticate to an OpenShift clusters with username and password to retrive an authentication token that can then be used with k8s* modules to interact with the kubernetes API and then logs out (revokes the authentication token),
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Automation controller(Ansible Tower) does not currently have a native OpenShift credential type, but it does provide the ability to create custom Credential Types. The steps below show how to create a Custom Credential Type in Automation controller(Ansible Tower) to support storing the username and password used to authenticate with OpenShift. First a OpenShift Credential Type is created, and then a Credential is created using the new credential type which stores the username, password and host information.
+
+1. Navigate to Administration > Credential Types and add a new credential type.
+2. Name it OpenShift and add the following YAML in the Input Configuration:
+`fields:
+  - id: host
+    type: string
+    label: URL for accessing the API server
+  - id: username
+    type: string
+    label: Username for authenticating with the API server
+  - id: password
+    type: string
+    label: Password for authenticating with the API server
+    secret: true
+  - id: verify_ssl
+    type: boolean
+    label: Verify the API server's SSL certificates
+  - id: ca_certificate
+    type: string
+    label: CA certificate used to verify connection to the API server
+    multiline: true
+required:
+  - username
+  - password
+  - host
+`
+3. 
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
-
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+
 
 Example Playbook
 ----------------
