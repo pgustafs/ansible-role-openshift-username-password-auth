@@ -76,9 +76,6 @@ Example Playbook
   gather_facts: false
   tasks:
   - block:
-    - name: See what version of kubernetes.core 
-      ansible.builtin.shell: cat /usr/share/ansible/collections/ansible_collections/kubernetes/core/MANIFEST.json | grep version
-
     - include_role:
         name: ansible-role-openshift-username-password-auth
       vars:
