@@ -11,7 +11,7 @@ Automation controller(Ansible Tower) does not currently have a native OpenShift 
 1. Navigate to Administration > Credential Types and add a new credential type.
 2. Name it OpenShift and add the following YAML in the Input Configuration:
 
-```    
+```yaml
 ---
 fields:
   - id: host
@@ -49,12 +49,20 @@ env:
   K8S_AUTH_SSL_CA_CERT: '{{ ca_certificate }}'
 ```
 
+The Injector Configuration provides the ability to store the credential data input by the user on the Ansible Controller in a way that allows it to be later referenced by an Ansible playbook using environment vars, for example:
+
+```yaml
+username: "{{ lookup('env','K8S_AUTH_USERNAME') }}"
+password: "{{ lookup('env','K8S_AUTH_PASSWORD') }}"
+host: "{{ lookup('env','K8S_AUTH_HOST') }}"
+validate_certs: "{{ lookup('env','K8S_AUTH_VERIFY_SSL') | bool }}"
+```
+
 Role Variables
 --------------
 
 Dependencies
 ------------
-
 
 
 Example Playbook
@@ -74,4 +82,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+pgustafs@redhat.com.
