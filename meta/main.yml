@@ -1,22 +1,16 @@
+
 galaxy_info:
+  role_name: openshift_username_password_auth
   author: Peter Gustafsson
-  description: A role to authenticate to an OpenShift clusters with username and password to retrive an authentication token that can then be used with k8s* modules to interact with the kubernetes API and then logs out (revokes the authentication token).
-  company: Red Hat
-
-  license: license (GPLv2, CC-BY, etc)
-
+  description:  A role to authenticate to an OpenShift clusters with username and password to retrive an authentication token that can then be used with k8s* modules to interact with the kubernetes API and then logs out (revokes the authentication token).
+  license: MIT
   min_ansible_version: 2.9
-
   platforms:
-  - name: EL
-    versions:
-    - all
-
-  categories:
-  - all
+    - name: EL
+      versions:
+        - 8
 
   galaxy_tags:
-  - openshift
-  - kubernetes
+    - pgustafs
 
 dependencies: []
